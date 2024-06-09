@@ -57,4 +57,5 @@ jobs:
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: GitHub Actions Notification
           body: Your workflow has been triggered successfully.
-          to: yakin68@gmail.com      
+          from: yakin68@gmail.com
+          to: yakin68@gmail.com
