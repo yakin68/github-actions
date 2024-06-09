@@ -52,10 +52,12 @@ jobs:
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
-          server_port: 587
+          server_port: 465
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: GitHub Actions Notification
-          body: Your workflow has been triggered successfully.
+          subject: 'Deploying {{ env.GITHUB_REF_NAME }} branch for VERSION-2 PRODUCTION'
+          body: |
+            Deployment Status: ${{ job.status }}
+            Steps: ${{ toJson(steps) }}          
           from: yakin68@gmail.com
           to: yakin68@gmail.com
