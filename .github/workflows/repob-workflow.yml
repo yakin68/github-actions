@@ -9,11 +9,11 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  repository_dispatch:            #  trigger için eklendi  
-    types: [trigger-deployment]   #  trigger için eklendi      
+  #repository_dispatch:            #  trigger için eklendi  
+    #types: [trigger-deployment]   #  trigger için eklendi      
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  #workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -58,17 +58,3 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-      # send email 
-      - name: Send email notification
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: 'Deploying {{ env.GITHUB_REF_NAME }} branch for VERSION-2 PRODUCTION'
-          body: |
-            Deployment Status: ${{ job.status }}
-            Steps: ${{ toJson(steps) }}          
-          from: yakin68@gmail.com
-          to: yakin68@gmail.com
